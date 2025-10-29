@@ -1,0 +1,61 @@
+{% extends 'register/base_navbar.html' %}
+{% load static %}
+{% block title %}Admin Login - BICS GLOBAL{% endblock %}
+
+{% block content %}
+<style>
+  .login-container {
+    max-width: 400px;
+    margin: auto;
+    margin-top: 80px;
+    padding: 30px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+    text-align: center;
+  }
+  .logo {
+    max-width: 150px;
+    margin-bottom: 15px;
+  }
+  .form-control {
+    border-radius: 8px;
+    margin-bottom: 15px;
+  }
+  .btn-primary {
+    border-radius: 8px;
+    width: 100%;
+    font-weight: bold;
+  }
+ 
+</style>
+
+<div class="login-container">
+  <img src="{% static 'images/bics_logo.png' %}" alt="BICS GLOBAL" class="logo">
+  <h4 class="mb-1">BICS GLOBAL</h4>
+  <small class="text-muted mb-4 d-block">Technology Empower Business</small>
+  <h5 class="mb-3">Sign In</h5>
+
+  <form method="post">
+    {% csrf_token %}
+    {% if messages %}
+      {% for message in messages %}
+        <div class="alert alert-danger">{{ message }}</div>
+      {% endfor %}
+    {% endif %}
+
+    <div class="mb-3 text-start">
+      {{ form.username.label_tag }}
+      {{ form.username }}
+    </div>
+
+    <div class="mb-3 text-start">
+      {{ form.password.label_tag }}
+      {{ form.password }}
+    </div>
+
+    <button type="submit" class="btn btn-primary">Sign in</button>
+  </form>
+
+</div>
+{% endblock %}

@@ -1,0 +1,12 @@
+{% extends 'register/base.html' %}
+
+{% block title %}Logged Out - BICS Global{% endblock %}
+
+{% block content %}
+<div class="container text-center mt-5">
+    <img src="{% static 'images/bics_logo.png' %}" alt="BICS GLOBAL Logo" height="80">
+    <h2 class="mt-4 text-success">You have been logged out successfully.</h2>
+    <p class="lead">Thank you for using the BICS GLOBAL Internship Portal.</p>
+    <a href="{% url 'admin_login' %}" class="btn btn-primary mt-3">Login Again</a>
+</div>
+{% endblock %}

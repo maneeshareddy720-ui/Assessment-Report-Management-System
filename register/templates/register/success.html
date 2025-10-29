@@ -1,0 +1,29 @@
+{% extends 'register/base_sidebar.html' %}
+{% load static %}
+{% block title %}Application Submitted{% endblock %}
+
+{% block content %}
+<style>
+  .thank-you-wrapper {
+    margin-top: 100px;
+    max-width: 600px;
+  }
+</style>
+
+<div class="container d-flex justify-content-center thank-you-wrapper">
+  <div class="card shadow-lg w-100">
+    <div class="card-body text-center">
+      <h2 class="card-title text-success mb-3">Thank You!</h2>
+      <p class="card-text">Your application has been submitted successfully.</p>
+
+      {% if request.user.is_authenticated %}
+        {% if request.user.is_superuser or request.user.is_staff %}
+          <div class="mt-4">
+            <a href="{% url 'admin_dashboard' %}" class="btn btn-primary">Go to Dashboard</a>
+          </div>
+        {% endif %}
+      {% endif %}
+    </div>
+  </div>
+</div>
+{% endblock %}

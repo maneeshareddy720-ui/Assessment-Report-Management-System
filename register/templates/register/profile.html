@@ -1,0 +1,107 @@
+{% extends 'register/base_sidebar.html' %}
+
+{% block title %}User Profile{% endblock %}
+
+{% block content %}
+<style>
+    body, html {
+        height: 100%;
+        background-color: #f0f2f5;
+        font-family: 'Segoe UI', sans-serif;
+    }
+    .profile-container {
+        min-height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 40px 20px;
+    }
+    .profile-card {
+        width: 100%;
+        max-width: 650px;
+        border-radius: 1rem;
+        background-color: #ffffff;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        padding: 40px;
+    }
+    .card-header-custom {
+        background: linear-gradient(135deg, #1e3c72, #2a5298);
+        color: white;
+        padding: 25px;
+        border-radius: 1rem 1rem 0 0;
+        text-align: center;
+        font-weight: bold;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    .profile-header-card {
+        width: 100%;
+        padding: 25px;
+        background: linear-gradient(135deg, #1e3c72, #2a5298);
+        border-radius: 1rem;
+        color: white;
+        text-align: left;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        margin-bottom: 2rem;
+    }
+    .profile-header-card h4 {
+        font-size: 1.75rem;
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+    .profile-header-card p {
+        opacity: 0.9;
+        font-size: 1rem;
+    }
+    .profile-info p {
+        margin-bottom: 1.25rem;
+        font-size: 1rem;
+        color: #495057;
+    }
+    .profile-info strong {
+        color: #212529;
+    }
+    .role-badge {
+        padding: 0.4em 0.8em;
+        border-radius: 1rem;
+        font-size: 0.85em;
+        font-weight: 600;
+        margin-left: 10px;
+        vertical-align: middle;
+    }
+    .bics-logo {
+        width: 50px;
+        height: auto;
+        margin-right: 15px;
+    }
+</style>
+
+<div class="profile-container">
+    <div class="profile-card">
+        <div class="profile-header-card d-flex align-items-center">
+            <div>
+                <h4>Hello, {{ user.username }}!</h4>
+                <p>Welcome to your personal profile page.</p>
+            </div>
+        </div>
+        <div class="card-body">
+            <h4 class="mb-4 text-primary"><i class="bi bi-person-gear me-2"></i>Account Details</h4>
+            <div class="profile-info">
+                <p><strong>Username:</strong> {{ user.username }}</p>
+                <p><strong>Full Name:</strong> {{ user.get_full_name|default:"N/A" }}</p>
+                <p><strong>Email:</strong> {{ user.email }}</p>
+                <p><strong>Joined:</strong> {{ user.date_joined|date:"d M Y, h:i A" }}</p>
+                <p><strong>Last Login:</strong> {{ user.last_login|date:"d M Y, h:i A" }}</p>
+                <p><strong>Role:</strong>
+                    {% if user.is_superuser %}
+                        <span class="badge bg-warning text-dark role-badge">Super Admin</span>
+                    {% elif user.is_staff %}
+                        <span class="badge bg-info role-badge">Staff User</span>
+                    {% else %}
+                        <span class="badge bg-secondary role-badge">Intern/User</span>
+                    {% endif %}
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

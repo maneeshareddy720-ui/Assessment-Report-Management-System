@@ -1,0 +1,15 @@
+{% extends 'register/base_sidebar.html' %}
+{% block title %}Edit Intern{% endblock %}
+
+{% block content %}
+  <h2>Edit Intern: {{ intern.full_name }}</h2>
+
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Update</button>
+  </form>
+
+  <br>
+  <a href="{% url 'admin_dashboard' %}">← Back to Dashboard</a>
+{% endblock %}

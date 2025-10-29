@@ -1,0 +1,12 @@
+<!-- templates/add_staff.html -->
+{% extends 'register/base_navbar.html' %}
+{% block content %}
+<div class="container mt-5">
+  <h2>Add Staff User</h2>
+  <form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">Create Staff</button>
+  </form>
+</div>
+{% endblock %}

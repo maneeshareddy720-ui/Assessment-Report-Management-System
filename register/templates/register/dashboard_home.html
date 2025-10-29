@@ -1,0 +1,65 @@
+{% extends "register/base_sidebar.html" %}
+{% load static %}
+
+{% block title %}Dashboard - BICS Global{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+
+    <div class="row align-items-center mb-5 shadow-lg p-4 rounded-4" 
+        style="background: linear-gradient(135deg, #1e3c72, #2a5298); color: white;">
+
+        <div class="col-md-2 text-center mb-3 mb-md-0" 
+             style="background-color: white; border-radius: 12px; padding: 10px;">
+          <img src="{% static 'images/bics_logo.png' %}" 
+               alt="Company Logo"
+               style="max-width:150px; max-height:80px; object-fit:contain;">
+        </div>
+
+        <div class="col-md-10">
+          <h1 class="fw-bold">Welcome, {{ user.get_full_name|default:user.username }}!</h1>
+          <p class="fs-5">Manage interns, assessments, and reports seamlessly on <span class="fw-bold text-warning">BICS Global</span> platform.</p>
+        </div>
+    </div>
+
+    <div class="row g-4">
+        <div class="col-md-4">
+            <a href="{% url 'admin_dashboard' %}" style="text-decoration: none; color: inherit;">
+                <div class="card shadow-sm border-0 rounded-4 p-4 text-center">
+                    <i class="bi bi-people fs-1 text-primary"></i>
+                    <h5 class="mt-3">Interns</h5>
+                    <p class="text-muted">Total interns in your platform</p>
+                </div>
+            </a>
+        </div>
+        <div class="col-md-4">
+            <a href="{% url 'intern_reports' %}" style="text-decoration: none; color: inherit;">
+                <div class="card shadow-sm border-0 rounded-4 p-4 text-center">
+                    <i class="bi bi-file-earmark-text fs-1 text-success"></i>
+                    <h5 class="mt-3">Assessments</h5>
+                    <p class="text-muted">Total assessments conducted</p>
+                </div>
+            </a>
+        </div>
+        <div class="col-md-4">
+            <a href="{% url 'dashboard' %}" style="text-decoration: none; color: inherit;">
+                <div class="card shadow-sm border-0 rounded-4 p-4 text-center">
+                    <i class="bi bi-bar-chart-line fs-1 text-warning"></i>
+                    <h5 class="mt-3">Reports</h5>
+                    <p class="text-muted">Detailed performance reports</p>
+                </div>
+            </a>
+        </div>
+    </div>
+
+</div>
+
+<style>
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 12px 28px rgba(0,0,0,0.15);
+        transition: all 0.3s ease-in-out;
+        cursor: pointer;
+    }
+</style>
+{% endblock %}
